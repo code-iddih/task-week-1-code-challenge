@@ -1,5 +1,22 @@
 // Function to calculate net salary
+const prompt = require('prompt-sync')();
+
 async function calculateNetSalary(basicSalary, benefits) {
+    // Checks if the Basic Salary and Bemefits is empty or Not Provided
+    if (basicSalary === null || basicSalary === undefined || benefits === null || benefits === undefined) {
+        return "Basic salary and benefits must be provided."; // 
+    }
+
+    // Checks if the Basic Salary is a Positive Number
+    if (typeof basicSalary !== 'number' || isNaN(basicSalary) || basicSalary < 0) {
+        return "Basic salary must be a non-negative number.";
+    }
+
+    // Checks if the Benefit is Empty or Not Provided
+    if (typeof benefits !== 'number' || isNaN(benefits) || benefits < 0) {
+        return "Benefits must be a non-negative number.";
+    }
+
     // Simulated tax rates for demonstration
     const TAX_RATES = [
         { threshold: 24000, rate: 10 },
@@ -89,20 +106,23 @@ async function calculateNetSalary(basicSalary, benefits) {
     };
 }
 
-// Example:
 async function exampleUsage() {
-    let basicSalary = 50000; // Example basic salary
-    let benefits = 10000; // Example benefits
+    let basicSalaryInput = prompt("Enter the basic salary: ");
+    let benefitsInput = prompt("Enter the benefits: ");
 
-    try {
-        let salaryDetails = await calculateNetSalary(basicSalary, benefits);
-        console.log("Gross Salary:", salaryDetails.grossSalary);
-        console.log("PAYE (Tax):", salaryDetails.paye);
-        console.log("NHIF Deduction:", salaryDetails.nhif);
-        console.log("NSSF Deduction:", salaryDetails.nssf);
-        console.log("Net Salary:", salaryDetails.netSalary);
-    } catch (error) {
-        console.error("Error calculating net salary:", error);
+    let basicSalary = parseFloat(basicSalaryInput);
+    let benefits = parseFloat(benefitsInput);
+
+    let result = await calculateNetSalary(basicSalary, benefits);
+
+    if (typeof result === 'string') {
+        console.error(result);
+    } else {
+        console.log("Gross Salary:", result.grossSalary);
+        console.log("PAYE (Tax):", result.paye);
+        console.log("NHIF Deduction:", result.nhif);
+        console.log("NSSF Deduction:", result.nssf);
+        console.log("Net Salary:", result.netSalary);
     }
 }
 

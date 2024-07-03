@@ -5,6 +5,7 @@
 // C: 50 to 59
 // D: 40 to 49
 // E: 0 to 39
+
 const prompt = require('prompt-sync')(); // Creates  prompt for user input in commandline environment
 
 function gradeGenerator() { // creates the function
@@ -12,6 +13,11 @@ function gradeGenerator() { // creates the function
     while (true) {
 
         let input = prompt("Please enter the student's mark in order to generate Grade :");  // Asks the User to input marks
+
+        if (!input) { // Checks if the input is Empty
+            console.log("Input cannot be empty. Please enter a valid mark between 0 and 100.");
+            continue; // Continues to ask for User to Enter a Valid Input
+        }
 
         let mark = parseFloat(input); // Converts the Input into a floating-point Number
 
