@@ -16,9 +16,14 @@ function speedDetector() { // Creates the function
     // Converts the Input into a floating-point Number
     let speed = parseFloat(input); 
 
-    if (isNaN(speed)) {  // Checks if the Input is a Number
+    if (isNaN(speed)) {  // Checks if the Input is Not a Number
 
         console.log("Please enter Speed in form of a number in Km/h : ");
+        return;
+    }
+
+    if (speed < 0) { //Checks if the Speed is negative
+        console.log("Speed cannot be negative. Please enter a valid speed");
         return;
     }
 
