@@ -45,7 +45,7 @@ function speedDetector() { // Creates the function
 
     } else {
 
-        console.log(`Points: ${demeritPoints}`);  // Outputs the Demerit Points
+        console.log(`Points: ${demeritPoints}`);  // Output the Demerit Points
     }
 
 }
